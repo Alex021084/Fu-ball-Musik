@@ -1,14 +1,9 @@
-FC Ostereistedt-Rhade – Fußball Musik
+FC Ostereistedt-Rhade – Stadion Soundboard
 
-Diese Version ist die echte Web-Oberfläche nach dem zweiten Bild:
-- 12 große farbige Tasten
-- korrektes Wappen aus der gezeigten Vorlage
-- Lied zuordnen
-- Start/Ende
-- lokale Audiodateien abspielen
-- STOP
+Version mit professioneller Stadion-Soundboard-Oberfläche.
+12 Soundtasten, Liedzuordnung, Start/Ende, STOP, Konfiguration speichern/laden.
 
-Hinweis:
-Apple-Music-Auswahl für offline gespeicherte Apple-Music-Titel wird nicht von einer normalen GitHub-Pages-Seite als freie Audiodatei bereitgestellt. Dafür ist die native iPad-Version mit Apple MusicKit vorgesehen.
+Apple Music:
+Die GitHub-Pages-Version kann offline gespeicherte Apple-Music-Titel nicht als freie Audiodateien auslesen. Die native iPad-Version wird dafür mit Apple MusicKit erweitert.
 
 Alle Dateien liegen direkt im ZIP-Stammverzeichnis.
