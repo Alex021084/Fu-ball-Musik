@@ -1,0 +1,115 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  objectVersion = 56;
+  objects = {
+
+    1479E90E79B64272924DCAF9 /* Project object */ = {
+      isa = PBXProject;
+      attributes = { LastUpgradeCheck = 1600; ORGANIZATIONNAME = "Fußball Musik"; TargetAttributes = { 542FE407C72E4AAD8629CBB7 = { CreatedOnToolsVersion = 16.0; }; }; };
+      buildConfigurationList = 81FAA5383F3D4765871D69A4;
+      compatibilityVersion = "Xcode 14.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      knownRegions = ( en, Base, );
+      mainGroup = 81FAA5383F3D4765871D69A4;
+      productRefGroup = 02AC8C9268434F5FAB43930B;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = ( 542FE407C72E4AAD8629CBB7, );
+    };
+
+    542FE407C72E4AAD8629CBB7 /* FuBallMusik */ = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 81FAA5383F3D4765871D69A4;
+      buildPhases = ( 6DBA0172691945F2BC245FA3, FD317B8D70E84FDEB07EF4AA, 7D03626EE6134173BC7BA599 );
+      buildRules = ();
+      dependencies = ();
+      name = FuBallMusik;
+      productName = FuBallMusik;
+      productReference = 02AC8C9268434F5FAB43930B;
+      productType = "com.apple.product-type.application";
+    };
+
+    81FAA5383F3D4765871D69A4 /* Configurations */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = ( C45882D2D05345218C22F713, 7D03626EE6134173BC7BA599 );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+
+    C45882D2D05345218C22F713 /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_STYLE = Automatic;
+        CURRENT_PROJECT_VERSION = 1;
+        DEVELOPMENT_TEAM = "";
+        GENERATE_INFOPLIST_FILE = YES;
+        INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+        PRODUCT_BUNDLE_IDENTIFIER = "com.alex021084.FuBallMusik";
+        PRODUCT_NAME = "$(TARGET_NAME)";
+        SWIFT_VERSION = 5.0;
+        TARGETED_DEVICE_FAMILY = "2";
+      };
+      name = Debug;
+    };
+
+    7D03626EE6134173BC7BA599 /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_STYLE = Automatic;
+        CURRENT_PROJECT_VERSION = 1;
+        DEVELOPMENT_TEAM = "";
+        GENERATE_INFOPLIST_FILE = YES;
+        INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+        PRODUCT_BUNDLE_IDENTIFIER = "com.alex021084.FuBallMusik";
+        PRODUCT_NAME = "$(TARGET_NAME)";
+        SWIFT_VERSION = 5.0;
+        TARGETED_DEVICE_FAMILY = "2";
+      };
+      name = Release;
+    };
+
+    6DBA0172691945F2BC245FA3 /* Frameworks */ = {
+      isa = PBXFrameworksBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    FD317B8D70E84FDEB07EF4AA /* Resources */ = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    7D03626EE6134173BC7BA599 /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = ();
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+
+    02AC8C9268434F5FAB43930B /* Products */ = {
+      isa = PBXGroup;
+      children = ();
+      name = Products;
+      sourceTree = "<group>";
+    };
+
+    81FAA5383F3D4765871D69A4 /* FuBallMusik group */ = {
+      isa = PBXGroup;
+      children = ();
+      path = FuBallMusik;
+      sourceTree = "<group>";
+    };
+  };
+  rootObject = 1479E90E79B64272924DCAF9;
+}
