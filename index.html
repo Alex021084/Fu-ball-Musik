@@ -1,10 +1,182 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#05070a"><title>FC Ostereistedt-Rhade · Fußball Musik</title><style>
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(#05070a,#07100b);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}main{max-width:1180px;margin:auto;padding:18px}.head{display:grid;grid-template-columns:150px 1fr 120px;align-items:center;gap:15px;padding-bottom:18px}.crest{width:125px;height:150px;margin:auto}.brand{text-align:center}.brand h1{margin:0;font-size:clamp(30px,5vw,55px);font-weight:950}.brand h1 span{color:#28e653}.brand h2{margin:7px 0;font-size:clamp(15px,2vw,23px)}.line{height:6px;max-width:350px;margin:auto;background:linear-gradient(90deg,#00a51a 0 38%,#fff 38% 62%,#e00000 62%)}.slogan{text-align:center;font-size:19px;font-weight:900;font-style:italic}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.sound,.stop{border:2px solid #ffffff30;color:#fff;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 7px 18px #0007}.sound{min-height:145px;border-radius:20px;font-size:clamp(18px,2.2vw,28px);padding:12px}.track{display:block;font-size:13px;font-weight:600;margin-top:9px;opacity:.9}.c1{background:#e00000}.c2{background:#075ee8}.c3{background:#08b83b}.c4{background:#ed6800}.c5{background:#8c14df}.c6{background:#ead000;color:#111}.c7{background:#08b8d2;color:#062027}.c8{background:#e71888}.c9{background:#087b32}.c10{background:#571ee0}.c11{background:#dca900;color:#111}.c12{background:#075ee8}.stop{width:100%;min-height:95px;margin-top:15px;border-radius:20px;background:#d80000;font-size:34px}.status{text-align:center;color:#b9c0c8;min-height:24px;margin-top:12px}@media(max-width:800px){.head{grid-template-columns:75px 1fr 25px}.crest{width:65px;height:80px}.slogan{display:none}.grid{grid-template-columns:repeat(2,1fr)}.sound{min-height:120px}.stop{min-height:75px;font-size:28px}}</style></head><body><main>
-<header class="head"><img class="crest" src="crest.svg" alt="FC Ostereistedt-Rhade Wappen"><div class="brand"><h1>FUSSBALL <span>MUSIK</span></h1><h2>FC Ostereistedt-Rhade</h2><div class="line"></div></div><div class="slogan">EIN VEREIN.<br>EINE REGION.</div></header>
-<section class="grid" id="grid"></section><button class="stop" id="stop">STOP</button><div class="status" id="status">Bereit für das nächste Tor</div><audio id="audio" preload="auto"></audio>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FC Ostereistedt-Rhade – Fußball Musik</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --green:#12d43a; --red:#ef1010; --white:#fff; --panel:#07131c;
+}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#020609;color:#fff}
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 8% 14%,rgba(255,255,255,.95) 0 2px,transparent 3px),
+    radial-gradient(circle at 92% 14%,rgba(255,255,255,.95) 0 2px,transparent 3px),
+    radial-gradient(ellipse at 50% 9%,rgba(45,70,88,.45),transparent 48%),
+    linear-gradient(#061018 0 45%,#07151a 62%,#08200e 100%);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.42;
+  background:
+    linear-gradient(155deg,transparent 0 32%,rgba(255,255,255,.08) 33%,transparent 34%),
+    linear-gradient(25deg,transparent 0 32%,rgba(255,255,255,.08) 33%,transparent 34%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px);
+}
+.app{max-width:1220px;margin:auto;padding:18px 22px 30px;position:relative}
+.header{display:grid;grid-template-columns:220px 1fr 220px;align-items:center;gap:20px;min-height:235px}
+.side-copy{font-size:27px;font-weight:900;font-style:italic;line-height:1.05;text-transform:uppercase;text-shadow:0 3px 0 #000;letter-spacing:.3px}
+.side-copy .stroke{display:block;height:7px;background:var(--green);transform:skew(-25deg);width:170px;margin-top:14px}
+.right{text-align:right}.right .stroke{margin-left:auto;background:linear-gradient(90deg,var(--green) 0 50%,#fff 50% 72%,var(--red) 72% 100%)}
+.crest{width:205px;height:220px;object-fit:contain;display:block;margin:auto;filter:drop-shadow(0 5px 5px #000)}
+.title{text-align:center;font-weight:1000;font-size:52px;line-height:.95;text-transform:uppercase;text-shadow:0 4px 0 #000;margin-top:-8px}
+.title .green{color:var(--green)}
+.subtitle{font-size:30px;font-weight:900;margin-top:16px;text-shadow:0 3px 0 #000}
+.tricolor{height:9px;max-width:330px;margin:12px auto 0;background:linear-gradient(90deg,var(--green) 0 33%,#fff 33% 66%,var(--red) 66%)}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.card{min-width:0}
+.sound-btn{
+  width:100%;min-height:108px;border:3px solid rgba(255,255,255,.28);border-radius:22px;
+  color:#fff;font-weight:1000;font-size:32px;line-height:1.02;padding:15px 12px;
+  text-shadow:0 3px 2px rgba(0,0,0,.55);box-shadow:inset 0 2px 0 rgba(255,255,255,.22),0 4px 12px #000;
+  cursor:pointer;transition:.08s transform,.08s filter;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.sound-btn:active{transform:scale(.985);filter:brightness(1.12)}
+.song{font-size:18px;font-weight:600;margin-top:10px;text-shadow:0 2px 2px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:96%}
+.control{
+  background:linear-gradient(#122331,#061019);border:2px solid #324757;border-top:0;border-radius:0 0 18px 18px;
+  padding:8px;box-shadow:0 5px 12px #000;margin:0 6px;
+}
+.assign{width:100%;height:44px;border:1px solid #506779;border-radius:9px;background:#101e2a;color:#fff;font-size:18px;font-weight:700;text-align:left;padding:0 12px;cursor:pointer}
+.times{display:grid;grid-template-columns:1fr 1fr 42px;align-items:center;gap:7px;margin-top:8px;font-size:14px;font-weight:700}
+.time{background:#07131c;border:1px solid #3a4e5d;border-radius:7px;color:#fff;padding:8px 6px;text-align:center}
+.edit{height:36px;border:1px solid #526879;border-radius:8px;background:#152532;color:#fff;font-size:18px;cursor:pointer}
+.stop{margin-top:18px;width:100%;min-height:100px;border-radius:24px;border:3px solid #ff5a5a;background:linear-gradient(#ff1616,#b80000);color:#fff;font-size:48px;font-weight:1000;box-shadow:inset 0 3px 0 rgba(255,255,255,.18),0 5px 14px #000;cursor:pointer}
+.stop small{display:block;font-size:18px;margin-top:2px}
+.footer{text-align:center;font-weight:800;letter-spacing:7px;font-size:19px;margin-top:22px;text-shadow:0 2px 2px #000}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+.modal.open{display:flex}
+.dialog{width:min(520px,100%);background:#091722;border:2px solid #486273;border-radius:20px;padding:20px;box-shadow:0 20px 60px #000}
+.dialog h2{margin:0 0 15px;font-size:25px}
+.choice{display:flex;gap:10px;flex-wrap:wrap}
+.choice button{flex:1;min-width:150px;padding:13px;border-radius:10px;border:1px solid #536b7b;background:#142633;color:#fff;font-weight:800;font-size:16px}
+.dialog label{display:block;margin-top:13px;font-weight:700}
+.dialog input[type=file],.dialog input[type=text],.dialog input[type=number]{width:100%;margin-top:6px;padding:10px;border-radius:8px;border:1px solid #536b7b;background:#06111a;color:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.actions{display:flex;gap:10px;margin-top:18px}.actions button{flex:1;padding:12px;border-radius:10px;border:0;font-weight:900}
+.save{background:var(--green);color:#001}.cancel{background:#334551;color:#fff}
+.note{font-size:13px;color:#b9c5cc;line-height:1.4;margin-top:10px}
+
+.c1{background:linear-gradient(135deg,#ff1717,#c60000)} .c2{background:linear-gradient(135deg,#0878ff,#0051c9)}
+.c3{background:linear-gradient(135deg,#13d83c,#00a92d)} .c4{background:linear-gradient(135deg,#ff8500,#e65b00)}
+.c5{background:linear-gradient(135deg,#bc0dff,#5f00d9)} .c6{background:linear-gradient(135deg,#fff000,#e7cf00);color:#080808;text-shadow:none}
+.c7{background:linear-gradient(135deg,#13d9ee,#05a7bf);color:#071018;text-shadow:none} .c8{background:linear-gradient(135deg,#ff24a5,#df087d)}
+.c9{background:linear-gradient(135deg,#10cf47,#008c28)} .c10{background:linear-gradient(135deg,#8c00ff,#4c00d7)}
+.c11{background:linear-gradient(135deg,#ffe900,#e6c800);color:#070707;text-shadow:none} .c12{background:linear-gradient(135deg,#0878ff,#0648bd)}
+
+@media(max-width:900px){
+  .app{padding:12px}
+  .header{grid-template-columns:120px 1fr;min-height:185px}.side-copy{display:none}.crest{width:120px;height:150px}.title{font-size:40px}.subtitle{font-size:22px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}.sound-btn{font-size:25px;min-height:110px}.song{font-size:16px}
+}
+@media(max-width:560px){
+  .header{grid-template-columns:90px 1fr}.crest{width:90px;height:125px}.title{font-size:31px}.subtitle{font-size:18px}.tricolor{height:6px}
+  .grid{grid-template-columns:1fr 1fr}.sound-btn{font-size:21px;min-height:102px}.control{margin:0 4px}.assign{font-size:15px}.times{font-size:12px}
+  .stop{font-size:38px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="side-copy">Ein Verein.<br>Eine Region.<br>Eine Familie.<span class="stroke"></span></div>
+    <div>
+      <img class="crest" src="crest-exact.png" alt="FC Ostereistedt-Rhade Wappen">
+      <div class="title">FC <span class="green">Ostereistedt-Rhade</span></div>
+      <div class="tricolor"></div>
+    </div>
+    <div class="side-copy right">Mehr<br>als ein Spiel.<span class="stroke"></span></div>
+  </header>
+
+  <main id="grid" class="grid"></main>
+  <button class="stop" onclick="stopAll()">STOP<small>Alle Sounds beenden</small></button>
+  <div class="footer">FC OSTEREISTEDT-RHADE</div>
+</div>
+
+<div id="modal" class="modal">
+  <div class="dialog">
+    <h2 id="modalTitle">Lied zuordnen</h2>
+    <div class="choice">
+      <button onclick="showFile()">📁 Audiodatei vom Gerät</button>
+      <button onclick="showApple()"> Apple Music</button>
+    </div>
+    <div id="formArea"></div>
+    <div class="actions">
+      <button class="cancel" onclick="closeModal()">Abbrechen</button>
+      <button class="save" onclick="saveAssignment()">Speichern</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const data=[["TOR","Test: tor.mp3","c1","tor.mp3"],["TORHYMNE","Noch kein Sound","c2"],["FANGESANG","Noch kein Sound","c3"],["HYPE","Noch kein Sound","c4"],["SIEG","Noch kein Sound","c5"],["AUF GEHT'S","Noch kein Sound","c6"],["NUR DER VEREIN","Noch kein Sound","c7"],["WIR SIND EIN TEAM","Noch kein Sound","c8"],["GEMEINSAM STARK","Noch kein Sound","c9"],["KÄMPFEN UND SIEGEN","Noch kein Sound","c10"],["FUSSBALL LEIDENSCHAFT","Noch kein Sound","c11"],["IMMER WEITER","Noch kein Sound","c12"]];
-const grid=document.querySelector("#grid"),audio=document.querySelector("#audio"),status=document.querySelector("#status");
-data.forEach(x=>{const b=document.createElement("button");b.className="sound "+x[2];b.innerHTML=x[0]+'<span class="track">'+x[1]+"</span>";b.onclick=()=>{if(!x[3]){status.textContent=x[0]+": Noch kein Sound hinterlegt";return}audio.pause();audio.currentTime=0;audio.src=x[3];audio.play().then(()=>status.textContent=x[0]+" läuft ▶").catch(()=>status.textContent="Bitte erneut tippen.")};grid.appendChild(b)});
-document.querySelector("#stop").onclick=()=>{audio.pause();audio.currentTime=0;status.textContent="Musik gestoppt ⏹"};
-</script></main></body></html>
+const labels=["TOR","TORHYMNE","FANGESANG","HYPE","SIEG","AUF GEHT’S","NUR DER VEREIN","WIR SIND EIN TEAM","GEMEINSAM STARK","KÄMPFEN UND SIEGEN","FUSSBALL LEIDENSCHAFT","IMMER WEITER"];
+const colors=["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","c11","c12"];
+let data=JSON.parse(localStorage.getItem("fcMusicSlots")||"null")||labels.map(()=>({song:"Noch kein Lied",start:0,end:0,src:null}));
+let audio=null, active=-1, editing=-1;
+
+function fmt(v){v=Math.max(0,Number(v)||0);let m=Math.floor(v/60),s=Math.floor(v%60);return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
+function render(){
+ const g=document.getElementById("grid");g.innerHTML="";
+ labels.forEach((label,i)=>{
+  const d=data[i];
+  const card=document.createElement("div");card.className="card";
+  card.innerHTML=`<button class="sound-btn ${colors[i]}" onclick="play(${i})"><div>${label}</div><div class="song">${escapeHtml(d.song)}</div></button>
+  <div class="control"><button class="assign" onclick="openModal(${i})">♫ &nbsp; Lied zuordnen <span style="float:right">›</span></button>
+  <div class="times"><div>Start: <span class="time">${fmt(d.start)}</span></div><div>Ende: <span class="time">${fmt(d.end)}</span></div><button class="edit" onclick="openModal(${i})">✎</button></div></div>`;
+  g.appendChild(card);
+ });
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function play(i){
+ stopAll();
+ const d=data[i];
+ if(!d.src){alert("Für diese Taste ist noch kein Audiosignal zugeordnet.");return}
+ audio=new Audio(d.src); active=i;
+ audio.currentTime=Number(d.start)||0;
+ audio.play().catch(()=>alert("Der Browser darf die Audiodatei erst nach einer direkten Bedienung starten."));
+ audio.ontimeupdate=()=>{if(d.end>0 && audio.currentTime>=d.end) stopAll()};
+ audio.onended=()=>{audio=null;active=-1};
+}
+function stopAll(){if(audio){audio.pause();audio.currentTime=0;audio=null}active=-1}
+function openModal(i){editing=i;document.getElementById("modalTitle").textContent=labels[i]+" – Lied zuordnen";showFile();document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open");editing=-1}
+function showFile(){
+ const d=data[editing]||{};
+ document.getElementById("formArea").innerHTML=`<label>Audiodatei</label><input id="file" type="file" accept="audio/*"><label>Name auf der Taste</label><input id="song" type="text" value="${escapeHtml(d.song==="Noch kein Lied"?"":d.song)}" placeholder="z. B. Torhymne"><div class="row"><label>Start (Sekunden)<input id="start" type="number" min="0" step="0.1" value="${d.start||0}"></label><label>Ende (Sekunden)<input id="end" type="number" min="0" step="0.1" value="${d.end||0}"></label></div><div class="note">Die Datei wird in diesem Browser lokal verwendet. Für Apple-Music-Wiedergabe bauen wir später die native iPad-Version mit MusicKit.</div>`;
+}
+function showApple(){
+ document.getElementById("formArea").innerHTML=`<div class="note" style="font-size:16px;margin-top:18px"><b>Apple Music</b><br><br>Die Auswahl und Wiedergabe aus Apple Music wird in der nativen iPad-App mit Apple MusicKit umgesetzt. Eine normale GitHub-Pages-Webseite kann die offline gespeicherten Apple-Music-Dateien nicht direkt als eigene Audiodateien auslesen.</div>`;
+}
+function saveAssignment(){
+ if(editing<0)return;
+ const f=document.getElementById("file"), name=document.getElementById("song");
+ if(f && f.files && f.files[0]){
+   data[editing].src=URL.createObjectURL(f.files[0]);
+   data[editing].song=(name.value||f.files[0].name);
+ }else if(name){
+   data[editing].song=name.value||"Noch kein Lied";
+ }
+ const s=document.getElementById("start"),e=document.getElementById("end");
+ if(s)data[editing].start=Number(s.value)||0;
+ if(e)data[editing].end=Number(e.value)||0;
+ localStorage.setItem("fcMusicSlots",JSON.stringify(data.map(x=>({...x}))));
+ closeModal();render();
+}
+render();
+</script>
+</body>
+</html>
