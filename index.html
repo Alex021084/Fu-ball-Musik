@@ -80,26 +80,76 @@ body:before{
 
 @media(max-width:900px){
   .app{padding:12px}
-  .header{grid-template-columns:120px 1fr;min-height:185px}.side-copy{display:none}.crest{width:120px;height:150px}.title{font-size:40px}.subtitle{font-size:22px}
+  .hero{grid-template-columns:1fr;min-height:235px;padding:8px}.hero-side{display:none}.crest-frame{width:155px;height:155px}.club-name{font-size:24px}.club-name span{font-size:34px}
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}.sound-btn{font-size:25px;min-height:110px}.song{font-size:16px}
 }
 @media(max-width:560px){
-  .header{grid-template-columns:90px 1fr}.crest{width:90px;height:125px}.title{font-size:31px}.subtitle{font-size:18px}.tricolor{height:6px}
+  .hero{min-height:205px}.crest-frame{width:125px;height:125px}.club-name{font-size:19px}.club-name span{font-size:28px}.tricolor{height:6px}
   .grid{grid-template-columns:1fr 1fr}.sound-btn{font-size:21px;min-height:102px}.control{margin:0 4px}.assign{font-size:15px}.times{font-size:12px}
   .stop{font-size:38px}
 }
+
+.hero{
+  position:relative;
+  min-height:260px;
+  display:grid;
+  grid-template-columns:1fr 360px 1fr;
+  align-items:center;
+  gap:24px;
+  margin:-4px 0 8px;
+  padding:18px 20px 4px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(0,200,255,.18),transparent 30%),
+    linear-gradient(180deg,rgba(1,8,13,.08),rgba(1,8,13,.72));
+  overflow:hidden;
+}
+.hero:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 5% 35%,rgba(255,255,255,.85) 0 2px,transparent 3px),
+    radial-gradient(ellipse at 95% 35%,rgba(255,255,255,.85) 0 2px,transparent 3px),
+    linear-gradient(90deg,transparent 0 8%,rgba(255,255,255,.06) 9%,transparent 10% 90%,rgba(255,255,255,.06) 91%,transparent 92%);
+}
+.hero-center{position:relative;z-index:1;text-align:center}
+.crest-frame{
+  width:205px;height:205px;margin:0 auto -2px;
+  display:flex;align-items:center;justify-content:center;
+  filter:drop-shadow(0 0 18px rgba(255,255,255,.18)) drop-shadow(0 8px 8px #000);
+}
+.hero .crest{width:100%;height:100%;object-fit:contain}
+.club-name{
+  font-size:30px;font-weight:1000;letter-spacing:.5px;
+  text-shadow:0 3px 0 #000,0 0 14px rgba(255,255,255,.15);
+}
+.club-name span{font-size:42px;margin-right:8px}
+.hero-side{
+  position:relative;z-index:1;
+  font-size:29px;font-weight:1000;font-style:italic;line-height:1.03;
+  text-shadow:0 4px 0 #000,0 0 10px #000;
+}
+.right-copy{text-align:right}
+.hero-side .stroke{
+  display:block;height:7px;width:175px;margin-top:15px;
+  transform:skew(-25deg);
+  background:var(--green);box-shadow:0 0 8px rgba(18,212,58,.6)
+}
+.right-copy .stroke{margin-left:auto;background:linear-gradient(90deg,var(--green),#fff 50%,var(--red))}
+
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="header">
-    <div class="side-copy">Ein Verein.<br>Eine Region.<br>Eine Familie.<span class="stroke"></span></div>
-    <div>
-      <img class="crest" src="crest-exact.png" alt="FC Ostereistedt-Rhade Wappen">
-      <div class="title">FC <span class="green">Ostereistedt-Rhade</span></div>
+  <header class="hero">
+    <div class="hero-side left-copy">EIN VEREIN.<br>EINE REGION.<br>EINE FAMILIE.<span class="stroke"></span></div>
+    <div class="hero-center">
+      <div class="crest-frame">
+        <img class="crest" src="crest-exact.png" alt="FC Ostereistedt-Rhade Wappen">
+      </div>
+      <div class="club-name"><span>FC</span> Ostereistedt-Rhade</div>
       <div class="tricolor"></div>
     </div>
-    <div class="side-copy right">Mehr<br>als ein Spiel.<span class="stroke"></span></div>
+    <div class="hero-side right-copy">MEHR<br>ALS EIN SPIEL.<span class="stroke"></span></div>
   </header>
 
   <main id="grid" class="grid"></main>
